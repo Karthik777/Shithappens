@@ -83,7 +83,9 @@ Template.roomPage.rendered = function(){
 			youtubePlayerDependency.depend();
 			if ( typeof currentRoom !== 'undefined' && youtubePlayerReady == true ) {
 				var motiondetected = Session.get('motiondetected');
-				if ( !motiondetected ) {
+				var videonotdetected = Session.get('videoDisabled');
+
+				if ( !motiondetected) {
 					Sky.player.el.stopVideo();
 					Sky.player.el.cueVideoById('0');
 				} else {
@@ -327,12 +329,12 @@ Template.roomPage.events({
 		}
 	},
 	'click .action-toggle': function(){
-		var videoDisabled = Session.get('videoDisabled');
-		if ( !videoDisabled ) {
-			Session.set('videoDisabled', true);
-		} else {
-			Session.set('videoDisabled', false);
-		}
+		// var motiondetected = Session.get('motiondetected');
+		// if ( motiondetected ) {
+		// 	Session.set('motiondetected', true);
+		// } else {
+		// 	Session.set('motiondetected', false);
+		// }
 	},
 	'click .share-room': function(){
 		$('.share-room').find('input').select();

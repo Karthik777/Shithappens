@@ -81,24 +81,9 @@ Meteor.methods({
     return Sky.api.youTube.search(query);
   },
   arePeopleDetected: function(){
-  	return detectedPeople;
+    	return detectedPeople;
   },
   setdetection: function(val){
   	 detectedPeople =val;
   }
 });
-
-// Meteor.method("motiondetection", function (a) {
-//   Session.set("play",a);
-// }, {
-//   url: "motiondetected",
-//   getArgsFromRequest: function (request) {
-//     // Let's say we want this function to accept a form-encoded request with
-//     // fields named `a` and `b`.
-//     var content = request.body;
-//
-//     // Since form enconding doesn't distinguish numbers and strings, we need
-//     // to parse it manually
-//     return content.a;
-//   }
-// })

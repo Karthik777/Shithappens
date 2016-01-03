@@ -76,28 +76,11 @@ Meteor.publish('room', function(room_id){
     });
 });
 
-Meteor.publish('roomVideos', function(room_id){
-	return Videos.find({room_id: room_id});
-});
-
-Meteor.publish("motiondetected", function () {
-	Meteor.call("setdetection", true, function(error, result){
-
-	});
-	if(Meteor.isClient){
-						appRouter.navigate("rooms/KisWraTiHJoRbFxe3" + objectId, {trigger:true});
-		 }
-  return SpotifySongs.find();
-});
-
-Meteor.publish("nomotion", function(){
-	Meteor.call("setdetection", false, function(error, result){
-
-	});
-	if(Meteor.isClient){
-            appRouter.navigate("rooms/KisWraTiHJoRbFxe3" + objectId, {trigger:true});
-     }
-  return SpotifySongs.find();
+Meteor.publish("roomVideos", function (index) {
+  return Videos.find({room_id: index},{playTime: 1, spotify_id :1});
+}, {
+  url: "roomVideos/:0",
+  httpMethod: "get"
 });
 
 Meteor.publish('roomSongs', function(room_id){
@@ -107,7 +90,6 @@ Meteor.publish('roomSongs', function(room_id){
 Meteor.publish('rooms', function(){
 	return Rooms.find();
 });
-
 
 Meteor.publish('roomVotes', function(room_id){
 	return Votes.find({room_id: room_id});

@@ -1,7 +1,7 @@
 Meteor.startup(function(){
 	console.log('Hey server! This is Songroll Sky.');
 	console.log('To kick things off, I will look for songs currently playing and set timers for when they end.');
-	
+
 	var nowPlaying = Videos.find({nowPlaying: true});
 	nowPlaying.forEach(function(doc, i){
 		Sky.playNextWhenOver(doc._id);
@@ -11,6 +11,7 @@ Meteor.startup(function(){
 	if ( !Rooms.findOne({title: 'Welcome to Songroll', featured: true}) ) {
 		Rooms.insert({title: 'Welcome to Songroll', featured: true, description: 'Learn the basics while you listen to awesome music and chat with cool people.', hasRecommendations: true, isPrivate: false});
 	}
+
 });
 
 Accounts.onCreateUser(function(options, user){
